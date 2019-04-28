@@ -5,5 +5,14 @@ module.exports = {
   defineConstants: {
   },
   weapp: {},
-  h5: {}
+  h5: {
+    router: {
+      mode: 'browser',
+      basename: '/',
+      customRoutes: {
+        '/pages/index/index': '/',
+        '/pages/signup/signup': '/signup',
+      }
+    }
+  }
 }

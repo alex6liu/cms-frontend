@@ -1,11 +1,14 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
-import { View, Button, Text } from '@tarojs/components'
+import { View, Button, Text, Input, Label } from '@tarojs/components'
 import { connect } from '@tarojs/redux'
 
 import { add, minus, asyncAdd } from '../../actions/counter'
 
 import './index.scss'
+
+import axios from 'axios';
+import api from '../../../utils/api';
 
 // #region 书写注意
 //
@@ -32,7 +35,8 @@ type PageDispatchProps = {
 type PageOwnProps = {}
 
 type PageState = {
-  title: string
+  username: String,
+  password: String,
 }
 
 type IProps = PageStateProps & PageDispatchProps & PageOwnProps
@@ -68,11 +72,16 @@ class Index extends Component {
   }
 
   state = {
-    title: 'hello world'
+    username: '',
+    password: '',
   }
 
   componentWillReceiveProps (nextProps) {
     console.log(this.props, nextProps)
+  }
+
+  componentDidMount() {
+
   }
 
   componentWillUnmount () { }
@@ -81,10 +90,44 @@ class Index extends Component {
 
   componentDidHide () { }
 
+  login() {
+
+  }
+
+  gotoSignup() {
+    Taro.navigateTo({
+      url: '/pages/signup/signup'
+    })
+  }
+
+  handleInput(type, e) {
+    if (type === 'username') {
+      this.setState({
+        username: e.detail.value
+      })
+    }
+    if (type === 'password') {
+      this.setState({
+        password: e.detail.value
+      })
+    }
+  }
+
   render () {
     return (
       <View className='index'>
-        <View>{this.state.title}</View>
+        <View className='login-container'>
+          <View className='input-container'>
+            <Label for='username' >用户名</Label>
+            <Input type='text' id='username' name='username' value={this.state.username} onInput={this.handleInput.bind(this, 'username')}/>
+          </View>
+          <View className='input-container'>
+            <Label for='password' >密码</Label>
+            <Input type='text' id='password' password name='password' value={this.state.password} onInput={this.handleInput.bind(this, 'password')}/>
+          </View>
+          <Button onClick={this.login} className='login'>登录</Button>
+          <Text className='no-account'>还没有账号?<Text onClick={this.gotoSignup}>点此注册</Text></Text>
+        </View>
       </View>
     )
   }
