@@ -1,9 +1,8 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text, Input, Label } from '@tarojs/components'
-import Tab from '../../components/tab/tab'
 
-import './welcome.scss'
+import './layout.scss'
 
 type PageStateProps = {
 
@@ -16,16 +15,16 @@ type PageDispatchProps = {
 type PageOwnProps = {}
 
 type PageState = {
-  titles: Array<string>
+
 }
 
-type IProps = PageStateProps & PageDispatchProps & PageOwnProps & PageState
+type IProps = PageStateProps & PageDispatchProps & PageOwnProps
 
-interface Welcome {
+interface Layout {
   props: IProps;
 }
 
-class Welcome extends Component {
+class Layout extends Component {
 
     /**
    * 指定config的类型声明为: Taro.Config
@@ -38,8 +37,8 @@ class Welcome extends Component {
     navigationBarTitleText: '欢迎',
   }
 
-  readonly state = {
-    titles: ['Home', 'Book']
+  state = {
+
   }
 
   componentWillReceiveProps (nextProps) {
@@ -58,12 +57,11 @@ class Welcome extends Component {
 
   render () {
     return (
-      <View className='welcome'>
-        12312332
-        <Tab titles={this.state.titles}></Tab>
+      <View className='layout'>
+
       </View>
     )
   }
 }
 
-export default Welcome as ComponentClass<PageOwnProps, PageState>
+export default Layout as ComponentClass<PageOwnProps, PageState>

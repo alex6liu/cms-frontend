@@ -91,7 +91,9 @@ class Index extends Component {
   componentDidHide () { }
 
   login() {
-
+    Taro.navigateTo({
+      url: '/pages/welcome/welcome'
+    })
   }
 
   gotoSignup() {

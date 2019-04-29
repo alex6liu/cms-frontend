@@ -1,31 +1,32 @@
 import { ComponentClass } from 'react'
 import Taro, { Component, Config } from '@tarojs/taro'
 import { View, Button, Text, Input, Label } from '@tarojs/components'
-import Tab from '../../components/tab/tab'
 
-import './welcome.scss'
+import './tab.scss'
 
 type PageStateProps = {
-
+  // titles: Array<String>,
 }
 
 type PageDispatchProps = {
 
 }
 
-type PageOwnProps = {}
-
-type PageState = {
-  titles: Array<string>
+type PageOwnProps = {
+  titles: Array<String>,
 }
 
-type IProps = PageStateProps & PageDispatchProps & PageOwnProps & PageState
+type PageState = {
 
-interface Welcome {
+}
+
+type IProps = PageStateProps & PageDispatchProps & PageOwnProps
+
+interface Tab {
   props: IProps;
 }
 
-class Welcome extends Component {
+class Tab extends Component {
 
     /**
    * 指定config的类型声明为: Taro.Config
@@ -38,8 +39,8 @@ class Welcome extends Component {
     navigationBarTitleText: '欢迎',
   }
 
-  readonly state = {
-    titles: ['Home', 'Book']
+  state = {
+
   }
 
   componentWillReceiveProps (nextProps) {
@@ -57,13 +58,18 @@ class Welcome extends Component {
   componentDidHide () { }
 
   render () {
+    const { titles } = this.props;
+
     return (
-      <View className='welcome'>
-        12312332
-        <Tab titles={this.state.titles}></Tab>
+      <View className='tap'>
+        {
+          titles.map(item => (
+            <View className='title'>{item}</View>
+          ))
+        }
       </View>
     )
   }
 }
 
-export default Welcome as ComponentClass<PageOwnProps, PageState>
+export default Tab as ComponentClass<PageOwnProps, PageState>

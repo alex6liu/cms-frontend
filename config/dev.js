@@ -12,6 +12,7 @@ module.exports = {
       customRoutes: {
         '/pages/index/index': '/',
         '/pages/signup/signup': '/signup',
+        '/pages/welcome/welcome': '/welcome',
       }
     }
   }
